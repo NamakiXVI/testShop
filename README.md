@@ -36,3 +36,15 @@ A modern, Apple-inspired online store with a separate admin dashboard.
    ```bash
    git clone https://github.com/namakixvi/futuristic-store.git
    cd futuristic-store
+2. **Install Dependencies:**
+   ```bash
+   cd server
+   npm install express cors body-parser jsonwebtoken
+
+### Start it up
+
+Start the WebApp by running the server.js
+
+```bash
+cd server
+node server.js
