@@ -34,5 +34,5 @@ A modern, Apple-inspired online store with a separate admin dashboard.
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/your-username/futuristic-store.git
+   git clone https://github.com/namakixvi/futuristic-store.git
    cd futuristic-store
