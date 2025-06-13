@@ -1,0 +1,30 @@
+[
+    {
+        "id": 1,
+        "name": "Quantum Smartwatch",
+        "price": 399.99,
+        "description": "Next-gen wearable with holographic display",
+        "icon": "fas fa-clock"
+    },
+    {
+        "id": 2,
+        "name": "Neural Headphones",
+        "price": 249.99,
+        "description": "AI-powered adaptive sound technology",
+        "icon": "fas fa-headphones"
+    },
+    {
+        "id": 3,
+        "name": "Holo Projector",
+        "price": 599.99,
+        "description": "True 3D holographic projection system",
+        "icon": "fas fa-cube"
+    },
+    {
+        "id": 4,
+        "name": "Quantum Keyboard",
+        "price": 199.99,
+        "description": "Zero-latency mechanical keyboard",
+        "icon": "fas fa-keyboard"
+    }
+]

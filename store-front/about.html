@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Nexus Store</title>
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* About page specific styles */
+        .about-hero {
+            background: linear-gradient(135deg, #000428, #004e92);
+            color: var(--white);
+            padding: 8rem 0 6rem;
+            text-align: center;
+        }
+        
+        .about-content {
+            padding: 6rem 0;
+        }
+        
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .about-image {
+            background-color: #f8f9fa;
+            border-radius: var(--border-radius);
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .about-image i {
+            font-size: 10rem;
+            color: var(--primary);
+            opacity: 0.2;
+        }
+        
+        .mission-section {
+            padding: 6rem 0;
+            background-color: var(--light);
+        }
+        
+        .mission-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .team-section {
+            padding: 6rem 0;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+        
+        .team-member {
+            text-align: center;
+        }
+        
+        .member-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background-color: #f8f9fa;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .member-image i {
+            font-size: 5rem;
+            color: var(--gray);
+        }
+        
+        .values-section {
+            padding: 6rem 0;
+            background-color: var(--light);
+        }
+        
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+        
+        .value-card {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            padding: 2.5rem;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .value-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+        
+        @media (max-width: 768px) {
+            .about-grid, .mission-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-image {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-infinity"></i>
+                <span>NEXUS</span>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="cart-icon">
+                <a href="cart.html">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- About Hero -->
+    <section class="about-hero">
+        <div class="container">
+            <h1>About Nexus</h1>
+            <p>Pioneering the future of technology since 2023</p>
+        </div>
+    </section>
+
+    <!-- About Content -->
+    <section class="about-content">
+        <div class="container">
+            <div class="about-grid">
+                <div>
+                    <h2>Our Story</h2>
+                    <p>Founded in 2023 by a team of visionary engineers and designers, Nexus began with a simple mission: to create technology that seamlessly integrates with human life while pushing the boundaries of innovation.</p>
+                    <p>What started as a small research lab in Silicon Valley has grown into a global brand trusted by millions of customers who share our passion for cutting-edge technology.</p>
+                    <p>Our journey has been marked by breakthrough innovations that have redefined entire product categories, from wearable technology to smart home ecosystems.</p>
+                </div>
+                <div class="about-image">
+                    <i class="fas fa-lightbulb"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="mission-section">
+        <div class="container">
+            <div class="mission-grid">
+                <div class="about-image">
+                    <i class="fas fa-bullseye"></i>
+                </div>
+                <div>
+                    <h2>Our Mission</h2>
+                    <p>At Nexus, our mission is to empower individuals through intuitive technology that enhances daily life without complexity. We believe technology should adapt to you, not the other way around.</p>
+                    <p>We're committed to:</p>
+                    <ul class="mission-list">
+                        <li>Creating products with uncompromising quality and innovative design</li>
+                        <li>Minimizing our environmental impact through sustainable practices</li>
+                        <li>Fostering a culture of creativity, diversity, and ethical innovation</li>
+                        <li>Delivering exceptional customer experiences at every touchpoint</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section">
+        <div class="container">
+            <h2>Leadership Team</h2>
+            <p class="subheading">The visionaries driving our innovation</p>
+            
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-image">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3>Alex Johnson</h3>
+                    <p>Founder & CEO</p>
+                    <p class="bio">Former head of R&D at TechGlobal with 15+ years in consumer electronics</p>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-image">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3>Maria Chen</h3>
+                    <p>Chief Design Officer</p>
+                    <p class="bio">Award-winning designer with a focus on human-centered technology</p>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-image">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3>David Kim</h3>
+                    <p>Chief Technology Officer</p>
+                    <p class="bio">AI and machine learning expert with multiple patents in neural interfaces</p>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-image">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3>Sarah Williams</h3>
+                    <p>VP of Operations</p>
+                    <p class="bio">Supply chain specialist with a passion for sustainable manufacturing</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values-section">
+        <div class="container">
+            <h2>Our Core Values</h2>
+            <p class="subheading">The principles that guide everything we do</p>
+            
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>Innovation</h3>
+                    <p>We challenge conventions and explore new possibilities to create breakthrough technologies.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Customer Focus</h3>
+                    <p>Our products are designed with real people in mind, solving genuine problems with elegant solutions.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>Sustainability</h3>
+                    <p>We're committed to reducing our environmental impact through responsible manufacturing and materials.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Integrity</h3>
+                    <p>We operate with transparency and honesty in all our relationships and business practices.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-logo">
+                <i class="fas fa-infinity"></i>
+                <span>NEXUS</span>
+            </div>
+            <div class="footer-links">
+                <div>
+                    <h3>Products</h3>
+                    <ul>
+                        <li><a href="index.html#featured-products">Smart Devices</a></li>
+                        <li><a href="index.html#featured-products">Wearables</a></li>
+                        <li><a href="index.html#featured-products">Home Tech</a></li>
+                        <li><a href="index.html#featured-products">Accessories</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Press</a></li>
+                        <li><a href="#">Sustainability</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Shipping</a></li>
+                        <li><a href="#">Returns</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Nexus. All rights reserved.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Update cart count
+        document.addEventListener('DOMContentLoaded', () => {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+            document.querySelectorAll('.cart-count').forEach(el => {
+                el.textContent = totalItems;
+            });
+        });
+    </script>
+</body>
+</html>

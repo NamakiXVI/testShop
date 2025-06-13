@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Your Order | Nexus Store</title>
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .tracking-section {
+            padding: 6rem 0;
+        }
+        
+        .tracking-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .tracking-form {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 2.5rem;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 3rem;
+        }
+        
+        .status-timeline {
+            position: relative;
+            padding: 0;
+            list-style: none;
+            margin: 2rem 0;
+        }
+        
+        .status-timeline:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--light);
+            left: 20px;
+            margin: 0;
+            z-index: 1;
+        }
+        
+        .status-step {
+            position: relative;
+            margin-bottom: 2rem;
+            padding-left: 3rem;
+            min-height: 40px;
+        }
+        
+        .status-step .status-icon {
+            position: absolute;
+            left: 10px;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--gray);
+            z-index: 2;
+        }
+        
+        .status-step.active .status-icon {
+            background: var(--primary);
+            box-shadow: 0 0 0 4px rgba(0, 113, 227, 0.2);
+        }
+        
+        .status-step.completed .status-icon {
+            background: var(--primary);
+        }
+        
+        .status-step.completed .status-icon:after {
+            content: '✓';
+            position: absolute;
+            top: -1px;
+            left: 3px;
+            color: white;
+            font-size: 14px;
+        }
+        
+        .order-details {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 2.5rem;
+            box-shadow: var(--shadow-sm);
+            margin-top: 2rem;
+        }
+        
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            align-items: center;
+        }
+        
+        .order-items {
+            margin: 1.5rem 0;
+        }
+        
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .tracking-info {
+            display: flex;
+            gap: 2rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .tracking-number, .order-notes {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .status-pending {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+        
+        .status-processing {
+            background-color: #cce5ff;
+            color: #004085;
+        }
+        
+        .status-shipped {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        
+        .status-delivered {
+            background-color: #d1ecf1;
+            color: #0c5460;
+        }
+        
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            margin-left: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-infinity"></i>
+                <span>NEXUS</span>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="index.html#featured-products">Products</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <button id="theme-toggle" class="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="cart-icon">
+                    <a href="cart.html">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Tracking Section -->
+    <section class="tracking-section">
+        <div class="container tracking-container">
+            <h2>Track Your Order</h2>
+            <p class="subheading">Enter your order number or email address to check your order status</p>
+            
+            <div class="tracking-form">
+                <form id="trackingForm">
+                    <div class="form-group">
+                        <label for="orderId">Order Number</label>
+                        <input type="text" id="orderId" name="orderId" placeholder="Enter your order number (e.g. NX-123ABC)" required>
+                    </div>
+                    <div class="or-divider">
+                        <span>OR</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="Enter the email used for your order" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Track Order</button>
+                </form>
+            </div>
+            
+            <div id="trackingResult" style="display: none;">
+                <div class="order-details">
+                    <div class="order-header">
+                        <div>
+                            <h3>Order <span id="result-orderId"></span></h3>
+                            <p>Placed on <span id="result-date"></span></p>
+                        </div>
+                        <div class="order-status">
+                            <span class="status-badge" id="result-status"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="order-items">
+                        <h4>Items</h4>
+                        <div id="result-items"></div>
+                    </div>
+                    
+                    <div class="order-total">
+                        <div class="summary-row total">
+                            <span>Total</span>
+                            <span id="result-total"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="tracking-info">
+                        <div class="tracking-number">
+                            <h4>Tracking Number</h4>
+                            <p id="result-tracking"></p>
+                        </div>
+                        <div class="order-notes">
+                            <h4>Order Notes</h4>
+                            <p id="result-notes"></p>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3>Order Status Timeline</h3>
+                <ul class="status-timeline" id="statusTimeline">
+                    <!-- Status steps will be added here dynamically -->
+                </ul>
+            </div>
+            
+            <div id="trackingError" class="error-message" style="display: none; text-align: center; padding: 2rem;">
+                <i class="fas fa-exclamation-circle"></i>
+                <p>We couldn't find your order. Please check your information and try again.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-logo">
+                <i class="fas fa-infinity"></i>
+                <span>NEXUS</span>
+            </div>
+            <div class="footer-links">
+                <div>
+                    <h3>Products</h3>
+                    <ul>
+                        <li><a href="index.html#featured-products">Smart Devices</a></li>
+                        <li><a href="index.html#featured-products">Wearables</a></li>
+                        <li><a href="index.html#featured-products">Home Tech</a></li>
+                        <li><a href="index.html#featured-products">Accessories</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Press</a></li>
+                        <li><a href="#">Sustainability</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Shipping</a></li>
+                        <li><a href="#">Returns</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Nexus. All rights reserved.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Update cart count
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+            document.querySelectorAll('.cart-count').forEach(el => {
+                el.textContent = totalItems;
+            });
+            
+            // Theme toggle
+            const themeToggle = document.getElementById('theme-toggle');
+            themeToggle.addEventListener('click', () => {
+                document.body.classList.toggle('dark-mode');
+                const isDarkMode = document.body.classList.contains('dark-mode');
+                localStorage.setItem('darkMode', isDarkMode);
+                themeToggle.innerHTML = isDarkMode ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+            });
+            
+            // Check saved theme
+            const savedDarkMode = localStorage.getItem('darkMode') === 'true';
+            if (savedDarkMode) {
+                document.body.classList.add('dark-mode');
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            }
+            
+            // Tracking form submission
+            const trackingForm = document.getElementById('trackingForm');
+            trackingForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                const orderId = document.getElementById('orderId').value.trim();
+                const email = document.getElementById('email').value.trim();
+                
+                if (!orderId && !email) {
+                    alert('Please enter either order number or email');
+                    return;
+                }
+                
+                try {
+                    const response = await fetch('http://localhost:3000/api/orders/track', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ orderId, email })
+                    });
+                    
+                    if (!response.ok) {
+                        throw new Error('Order not found');
+                    }
+                    
+                    const order = await response.json();
+                    displayOrder(order);
+                } catch (error) {
+                    document.getElementById('trackingResult').style.display = 'none';
+                    document.getElementById('trackingError').style.display = 'block';
+                }
+            });
+        });
+        
+        function displayOrder(order) {
+            document.getElementById('trackingResult').style.display = 'block';
+            document.getElementById('trackingError').style.display = 'none';
+            
+            document.getElementById('result-orderId').textContent = order.shippingId;
+            document.getElementById('result-date').textContent = new Date(order.date).toLocaleDateString();
+            document.getElementById('result-total').textContent = `$${order.total.toFixed(2)}`;
+            
+            // Set status badge NEW STUFF
+            const statusBadge = document.getElementById('result-status');
+            statusBadge.textContent = order.status;
+            statusBadge.className = 'status-badge ' + getStatusClass(order.status);
+            
+            switch(order.status) {
+                case 'pending':
+                    statusBadge.classList.add('status-pending');
+                    break;
+                case 'processing':
+                    statusBadge.classList.add('status-processing');
+                    break;
+                case 'shipped':
+                    statusBadge.classList.add('status-shipped');
+                    break;
+                case 'delivered':
+                    statusBadge.classList.add('status-delivered');
+                    break;
+            }
+            
+            // Display items
+            const itemsContainer = document.getElementById('result-items');
+            itemsContainer.innerHTML = '';
+            order.items.forEach(item => {
+                const itemEl = document.createElement('div');
+                itemEl.className = 'order-item';
+                itemEl.innerHTML = `
+                    <span>${item.quantity} x ${item.name}</span>
+                    <span>$${(item.price * item.quantity).toFixed(2)}</span>
+                `;
+                itemsContainer.appendChild(itemEl);
+            });
+            
+            // Display tracking info
+            document.getElementById('result-tracking').textContent = 
+                order.trackingNumber || 'Tracking number will be provided when shipped';
+            document.getElementById('result-notes').textContent = 
+                order.notes || 'No notes for this order';
+            
+            // Display status timeline
+            const statusTimeline = document.getElementById('statusTimeline');
+            statusTimeline.innerHTML = '';
+            
+            const statuses = [
+                { id: 'Order Received', label: 'Order Received', description: 'We have received your order' },
+                { id: 'Processing', label: 'Processing', description: 'Preparing your order for shipment' },
+                { id: 'Shipped', label: 'Shipped', description: 'Your order is on the way' },
+                { id: 'Delivered', label: 'Delivered', description: 'Your order has been delivered' }
+            ];
+            
+            let currentStatusIndex = statuses.findIndex(s => s.id === order.status);
+            if (currentStatusIndex === -1) currentStatusIndex = 0;
+            
+            statuses.forEach((status, index) => {
+                const step = document.createElement('li');
+                step.className = `status-step ${index < currentStatusIndex ? 'completed' : ''} ${index === currentStatusIndex ? 'active' : ''}`;
+                step.innerHTML = `
+                    <div class="status-icon"></div>
+                    <div class="status-content">
+                        <h4>${status.label}</h4>
+                        <p>${status.description}</p>
+                        ${index === currentStatusIndex && order.status === 'shipped' && order.trackingNumber ? 
+                            `<p class="tracking-info">Tracking number: ${order.trackingNumber}</p>` : ''}
+                        ${index === currentStatusIndex && order.notes ? 
+                            `<p class="order-notes">${order.notes}</p>` : ''}
+                    </div>
+                `;
+                statusTimeline.appendChild(step);
+            });
+        }
+
+        function getStatusClass(status) {
+            if (!status) return '';
+            
+            const statusMap = {
+                'Order Received': 'status-received',
+                'Processing': 'status-processing',
+                'Shipped': 'status-shipped',
+                'Delivered': 'status-delivered',
+                'pending': 'status-pending',
+                'processing': 'status-processing',
+                'shipped': 'status-shipped',
+                'delivered': 'status-delivered'
+            };
+            
+            // Try direct match first
+            if (statusMap[status]) return statusMap[status];
+            
+            // Try case-insensitive match
+            const lowerStatus = status.toLowerCase();
+            for (const key in statusMap) {
+                if (key.toLowerCase() === lowerStatus) {
+                    return statusMap[key];
+                }
+            }
+            
+            return '';
+        }
+
+    </script>
+</body>
+</html>

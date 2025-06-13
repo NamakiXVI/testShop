@@ -1,0 +1,30 @@
+[
+  {
+    "id": "MSG-MBSIEABA",
+    "name": "Philipp Nguyen",
+    "email": "xshadow833@gmail.com",
+    "phone": "+4917642084697",
+    "subject": "technical",
+    "message": "I want to tell you",
+    "date": "2025-06-11T22:16:08.374Z",
+    "read": true,
+    "responses": [
+      {
+        "content": "response",
+        "date": "2025-06-11T22:16:22.783Z",
+        "admin": "admin"
+      }
+    ]
+  },
+  {
+    "id": "MSG-MBTX1OZ6",
+    "name": "Philipp Nguyen",
+    "email": "xshadow833@gmail.com",
+    "phone": "",
+    "subject": "feedback",
+    "message": "I like your store",
+    "date": "2025-06-12T21:54:01.266Z",
+    "read": true,
+    "responses": []
+  }
+]

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation | Nexus Store</title>
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-infinity"></i>
+                <span>NEXUS</span>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="cart-icon">
+                <a href="cart.html">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Confirmation Content -->
+    <main class="container">
+        <section class="confirmation">
+            <div class="confirmation-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h2>Thank You for Your Order!</h2>
+            <p>Your order has been placed successfully.</p>
+            <p>Your shipping ID is: <strong id="shipping-id">NX-123456</strong></p>
+            <p>We've sent a confirmation email with your order details.</p>
+            <div class="confirmation-actions">
+                <a href="index.html" class="btn btn-primary">Continue Shopping</a>
+                <a href="track.html" class="btn btn-secondary">Track Your Order</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-logo">
+                <i class="fas fa-infinity"></i>
+                <span>NEXUS</span>
+            </div>
+            <div class="footer-links">
+                <div>
+                    <h3>Products</h3>
+                    <ul>
+                        <li><a href="#">Smart Devices</a></li>
+                        <li><a href="#">Wearables</a></li>
+                        <li><a href="#">Home Tech</a></li>
+                        <li><a href="#">Accessories</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Shipping</a></li>
+                        <li><a href="#">Returns</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Press</a></li>
+                        <li><a href="#">Sustainability</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Nexus. All rights reserved.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Clear cart and update cart count
+        localStorage.removeItem('cart');
+        document.querySelectorAll('.cart-count').forEach(el => {
+            el.textContent = '0';
+        });
+
+        // Display shipping ID from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const shippingId = urlParams.get('shippingId');
+        if (shippingId) {
+            document.getElementById('shipping-id').textContent = shippingId;
+        }
+    </script>
+</body>
+</html>

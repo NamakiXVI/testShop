@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Nexus Store</title>
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .admin-nav {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+        }
+        
+        .admin-nav ul {
+            display: flex;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .admin-nav li {
+            padding: 0;
+        }
+        
+        .admin-nav a {
+            display: block;
+            padding: 1rem 1.5rem;
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            border-bottom: 3px solid transparent;
+            transition: var(--transition);
+        }
+        
+        .admin-nav a.active {
+            border-bottom: 3px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .admin-nav a:hover {
+            background-color: rgba(0, 0, 0, 0.03);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .message-card {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-sm);
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .message-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .message-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+        
+        .message-name {
+            font-weight: 600;
+        }
+        
+        .message-date {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        .message-preview {
+            color: var(--gray);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .message-unread {
+            background-color: #f0f7ff;
+            border-left: 3px solid var(--primary);
+        }
+        
+        .message-detail {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-sm);
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .message-response {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .status-received {
+            background-color: #e2e3e5;
+            color: #383d41;
+        }
+        
+        .status-processing {
+            background-color: #cce5ff;
+            color: #004085;
+        }
+        
+        .status-shipped {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        
+        .status-delivered {
+            background-color: #d1ecf1;
+            color: #0c5460;
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-dashboard">
+        <header class="admin-header">
+            <div class="container">
+                <div class="logo">
+                    <i class="fas fa-infinity"></i>
+                    <span>NEXUS ADMIN</span>
+                </div>
+                <button id="logout-btn" class="btn btn-secondary">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </header>
+
+        <nav class="admin-nav">
+            <div class="container">
+                <ul>
+                    <li><a href="#orders" class="admin-tab active" data-tab="orders">Orders</a></li>
+                    <li><a href="#inbox" class="admin-tab" data-tab="inbox">Inbox</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <main class="container">
+            <!-- Orders Tab -->
+            <div id="orders-tab" class="tab-content active">
+                <div class="dashboard-header">
+                    <h1>Orders Dashboard</h1>
+                    <div>
+                        <button id="export-btn" class="btn btn-secondary" style="width: 100%;">
+                            <i class="fas fa-download"></i> Export CSV
+                        </button>
+                    </div>
+                </div>
+
+                <div id="orders-container">
+                    <!-- Orders will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Inbox Tab -->
+            <div id="inbox-tab" class="tab-content">
+                <div class="dashboard-header">
+                    <h1>Customer Messages</h1>
+                </div>
+
+                <div class="inbox-container">
+                    <div class="messages-list" id="messages-list">
+                        <!-- Messages will be loaded here -->
+                    </div>
+                    
+                    <div class="message-detail" id="message-detail" style="display: none;">
+                        <div class="message-header">
+                            <h3 id="message-subject"></h3>
+                            <button id="close-message" class="btn btn-secondary">
+                                <i class="fas fa-times"></i> Close
+                            </button>
+                        </div>
+                        <div class="message-info">
+                            <p><strong>From:</strong> <span id="message-from"></span></p>
+                            <p><strong>Date:</strong> <span id="message-date"></span></p>
+                        </div>
+                        <div class="message-content" id="message-content"></div>
+                        
+                        <div class="message-response">
+                            <h4>Send Response</h4>
+                            <form id="response-form">
+                                <div class="form-group">
+                                    <label for="response-content">Your Response</label>
+                                    <textarea id="response-content" class="form-control" rows="4" required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-paper-plane"></i> Send Response
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/dashboardTest.js"></script>
+</body>
+</html>
