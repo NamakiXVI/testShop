@@ -138,3 +138,57 @@ document.addEventListener('DOMContentLoaded', () => {
         themeToggle.innerHTML = theme === 'light' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
     }
 });
+
+/*
+I have an existing website with a two-part structure: a **store front** and an **admin side**. I want you to *revolutionize the UI and UX design* of both sides to create a **modern, futuristic experience** that deeply satisfies the user through **immersive dark design**, **smooth animations**, and **subtle 3D effects**.
+
+### Goals:
+
+* Keep all functionalities unchanged — focus **only** on improving design and user experience.
+* Create a **futuristic dark theme** that feels immersive and elegant.
+* Introduce **3D animations** and **fluid transitions** that feel smooth and satisfying.
+* Design with a **strong sense of layout hierarchy** and user flow.
+* Ensure mobile and desktop responsiveness.
+
+### Design Principles:
+
+* Use glassmorphism, neon accents, soft shadows, and layered depth for a 3D futuristic feel.
+* Smooth hover animations, fluid transitions between pages, and delightful micro-interactions.
+* Clean, spacious layout with clear visual hierarchy.
+* Consistent dark color palette with accent colors for interactive elements.
+* Elevate both the **store front** and the **admin panel** with distinct but visually cohesive design languages.
+
+### Folder Structure of My Website:
+
+```
+futuristic-store/
+├── store-front/
+│   ├── index.html
+│   ├── product.html
+│   ├── cart.html
+│   ├── checkout.html
+│   ├── confirmation.html
+│   ├── css/
+│   │   ├── main.css
+│   │   └── variables.css
+│   └── js/
+│       ├── main.js
+│       ├── cart.js
+│       ├── checkout.js
+│       └── product.js
+├── admin-site/
+│   ├── admin.html
+│   ├── dashboard.html
+│   ├── css/
+│   │   └── admin.css
+│   └── js/
+│       ├── admin.js
+│       └── dashboard.js
+```
+
+### Focus:
+
+* Improve **visual aesthetics** (not functionality).
+* Enhance **user satisfaction** through design.
+* Make both front-end and admin-side feel like part of the same futuristic brand.
+*/
