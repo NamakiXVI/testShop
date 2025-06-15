@@ -127,28 +127,15 @@ function renderOrders(orders, statusOptions) {
             <div class="order-footer">
                 <div class="order-total">Total: $${orderTotal.toFixed(2)}</div>
                 
-                <div class="tracking-info">
-                    <div class="form-group">
-                        <label>Tracking Number</label>
-                        <input type="text" class="tracking-input" value="${order.trackingNumber || ''}" 
-                               placeholder="Enter tracking number" data-id="${order.shippingId}">
-                    </div>
-                    <div class="form-group">
-                        <label>Order Notes</label>
-                        <textarea class="notes-textarea" placeholder="Add notes for customer"
-                                  data-id="${order.shippingId}">${order.notes || ''}</textarea>
-                    </div>
-                </div>
-                
-                <div class="order-actions">
-                    <select class="status-select" data-id="${order.shippingId}">
+                <div class="order-actions" style="display: flex; gap: 8px; align-items: center;">
+                    <select class="status-select" data-id="${order.shippingId}" style="flex: 1;">
                         ${statusOptions.map(option => `
                             <option value="${option}" ${order.status === option ? 'selected' : ''}>
                                 ${option}
                             </option>
                         `).join('')}
                     </select>
-                    <button class="btn btn-primary update-order" data-id="${order.shippingId}">
+                    <button class="btn btn-primary update-order" style="width: 100%;" style="flex: 1; white-space: nowrap;" data-id="${order.shippingId}">
                         Update Order
                     </button>
                     <!-- DELETE BUTTON ADDED HERE -->
