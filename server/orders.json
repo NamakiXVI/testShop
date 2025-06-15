@@ -1,11 +1,11 @@
 [
   {
     "customer": {
-      "name": "Philipp Nguyen",
+      "name": "Philipp Nguyen ",
       "email": "xshadow833@gmail.com",
       "address": {
         "street": "Feuerbachstraße 62",
-        "city": "Berlin",
+        "city": "Berlin ",
         "postalCode": "12163",
         "country": "DE"
       }
@@ -22,201 +22,12 @@
         "name": "Neural Headphones",
         "price": 249.99,
         "quantity": 1
-      },
-      {
-        "id": 3,
-        "name": "Holo Projector",
-        "price": 599.99,
-        "quantity": 19
-      },
-      {
-        "id": 4,
-        "name": "Quantum Keyboard",
-        "price": 199.99,
-        "quantity": 1
       }
     ],
-    "total": 12249.779999999999,
-    "shippingId": "NX-MBSHNKZ4",
-    "date": "2025-06-11T21:55:22.480Z",
-    "status": "Processing"
-  },
-  {
-    "customer": {
-      "name": "Philipp Nguyen",
-      "email": "xshadow833@gmail.com",
-      "address": {
-        "street": "Feuerbachstraße 62",
-        "city": "Berlin",
-        "postalCode": "12163",
-        "country": "DE"
-      }
-    },
-    "items": [
-      {
-        "id": 1,
-        "name": "Quantum Smartwatch",
-        "price": 399.99,
-        "quantity": 1
-      },
-      {
-        "id": 2,
-        "name": "Neural Headphones",
-        "price": 249.99,
-        "quantity": 1
-      },
-      {
-        "id": 3,
-        "name": "Holo Projector",
-        "price": 599.99,
-        "quantity": 1
-      },
-      {
-        "id": 4,
-        "name": "Quantum Keyboard",
-        "price": 199.99,
-        "quantity": 1
-      }
-    ],
-    "total": 1449.96,
-    "shippingId": "NX-MBTX7BJC",
-    "date": "2025-06-12T21:58:23.784Z",
-    "status": "Delivered"
-  },
-  {
-    "customer": {
-      "name": "Philipp Nguyen",
-      "email": "xshadow833@gmail.com",
-      "address": {
-        "street": "Feuerbachstraße 62",
-        "city": "Berlin",
-        "postalCode": "12163",
-        "country": "DE"
-      }
-    },
-    "items": [
-      {
-        "id": 3,
-        "name": "Holo Projector",
-        "price": 599.99,
-        "quantity": 1
-      },
-      {
-        "id": 4,
-        "name": "Quantum Keyboard",
-        "price": 199.99,
-        "quantity": 1
-      },
-      {
-        "id": 2,
-        "name": "Neural Headphones",
-        "price": 249.99,
-        "quantity": 1
-      },
-      {
-        "id": 1,
-        "name": "Quantum Smartwatch",
-        "price": 399.99,
-        "quantity": 1
-      }
-    ],
-    "total": 1449.96,
-    "shippingId": "NX-MBWW95VR",
-    "date": "2025-06-14T23:55:08.679Z",
-    "status": "Delivered",
-    "trackingNumber": "",
-    "notes": ""
-  },
-  {
-    "customer": {
-      "name": "Philipp Nguyen",
-      "email": "xshadow833@gmail.com",
-      "address": {
-        "street": "Feuerbachstraße 62",
-        "city": "Berlin",
-        "postalCode": "12163",
-        "country": "DE"
-      }
-    },
-    "items": [
-      {
-        "quantity": 5
-      }
-    ],
-    "total": null,
-    "shippingId": "NX-MBWX6VF1",
-    "date": "2025-06-15T00:21:21.421Z",
-    "status": "Order Received",
-    "trackingNumber": "",
-    "notes": ""
-  },
-  {
-    "customer": {
-      "name": "Philipp Nguyen",
-      "email": "xshadow833@gmail.com",
-      "address": {
-        "street": "Feuerbachstraße 62",
-        "city": "Berlin",
-        "postalCode": "12163",
-        "country": "DE"
-      }
-    },
-    "items": [
-      {
-        "id": 1,
-        "name": "Quantum Smartwatch",
-        "price": 399.99,
-        "quantity": 1
-      },
-      {
-        "id": 2,
-        "name": "Neural Headphones",
-        "price": 249.99,
-        "quantity": 1
-      },
-      {
-        "id": 3,
-        "name": "Holo Projector",
-        "price": 599.99,
-        "quantity": 1
-      },
-      {
-        "id": 4,
-        "name": "Quantum Keyboard",
-        "price": 199.99,
-        "quantity": 1
-      }
-    ],
-    "total": 1449.96,
-    "shippingId": "NX-MBWX9JD5",
-    "date": "2025-06-15T00:23:25.769Z",
-    "status": "Order Received",
-    "trackingNumber": "",
-    "notes": ""
-  },
-  {
-    "customer": {
-      "name": "Philipp Nguyen",
-      "email": "xshadow833@gmail.com",
-      "address": {
-        "street": "Feuerbachstraße 62",
-        "city": "Berlin",
-        "postalCode": "12163",
-        "country": "DE"
-      }
-    },
-    "items": [
-      {
-        "id": 1,
-        "name": "Quantum Smartwatch",
-        "price": 399.99,
-        "quantity": 5
-      }
-    ],
-    "total": 1999.95,
-    "shippingId": "NX-MBWXP4K4",
-    "date": "2025-06-15T00:35:33.076Z",
-    "status": "Order Received",
+    "total": 649.98,
+    "shippingId": "NX-MBXH20TX",
+    "date": "2025-06-15T09:37:27.477Z",
+    "status": "Processing",
     "trackingNumber": "",
     "notes": ""
   }

@@ -62,9 +62,17 @@ async function loadOrders() {
             }
         });
         
-        if (response.status === 401) {
+        // Handle 401 and 403 responses
+        if (response.status === 401 || response.status === 403) {
             redirectToLogin();
             return;
+        }
+        
+        // Check if response is JSON before parsing
+        const contentType = response.headers.get('content-type');
+        if (!contentType || !contentType.includes('application/json')) {
+            const text = await response.text();
+            throw new Error(`Unexpected response: ${text}`);
         }
         
         const data = await response.json();
@@ -78,8 +86,7 @@ async function loadOrders() {
             // Fallback to old format
             orders = data;
             statusOptions = ["Order Received", "Processing", "Shipped", "Delivered"];
-        }
-        
+        } 
         renderOrders(orders, statusOptions);
     } catch (error) {
         console.error('Error loading orders:', error);
@@ -145,9 +152,12 @@ function renderOrders(orders, statusOptions) {
                         Update Order
                     </button>
                     <!-- DELETE BUTTON ADDED HERE -->
+                    <!--                     
                     <button class="btn btn-danger delete-order" data-id="${order.shippingId}">
                         <i class="fas fa-trash"></i> Delete
                     </button>
+                    -->
+                    
                 </div>
             </div>
         `;
@@ -392,17 +402,18 @@ function showNotification(message, isError = false) {
 }
 
 async function deleteOrder(event) {
-    const shippingId = event.target.closest('.delete-order').dataset.id;
-    const orderCard = event.target.closest('.order-card');
+    const button = event.target.closest('.delete-order');
+    const shippingId = button.dataset.id;
+    const orderCard = button.closest('.order-card');
     
     if (!confirm(`Are you sure you want to permanently delete order ${shippingId}? This action cannot be undone.`)) {
         return;
     }
     
     // Show deleting state
-    const originalText = event.target.innerHTML;
-    event.target.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Deleting...';
-    event.target.disabled = true;
+    const originalText = button.innerHTML;
+    button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Deleting...';
+    button.disabled = true;
     
     try {
         const response = await fetch(`http://localhost:3000/api/admin/orders/${shippingId}`, {
@@ -412,7 +423,14 @@ async function deleteOrder(event) {
             }
         });
         
-        if (response.ok) {
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.message || 'Failed to delete order');
+        }
+        
+        const result = await response.json();
+        
+        if (result.success) {
             // Add animation for deletion
             orderCard.style.opacity = '1';
             
@@ -431,15 +449,14 @@ async function deleteOrder(event) {
                 }
             }, 30);
         } else {
-            const errorData = await response.json();
-            throw new Error(errorData.message || 'Failed to delete order');
+            throw new Error(result.message || 'Failed to delete order');
         }
     } catch (error) {
         console.error('Delete error:', error);
         
         // Reset button state
-        event.target.innerHTML = originalText;
-        event.target.disabled = false;
+        button.innerHTML = originalText;
+        button.disabled = false;
         
         // Show error notification
         showNotification(`Delete failed: ${error.message}`, true);

@@ -265,19 +265,6 @@ input:focus {
     text-align: center;
 }
 
-/* Add to admin.css */
-.btn-danger {
-    background: rgba(255, 0, 0, 0.2) !important;
-    border: 1px solid rgba(255, 0, 0, 0.3) !important;
-    color: #ff4d4d !important;
-}
-
-.btn-danger:hover {
-    background: rgba(255, 0, 0, 0.3) !important;
-    border: 1px solid rgba(255, 0, 0, 0.4) !important;
-    transform: translateY(-2px);
-}
-
 .notification {
     position: fixed;
     bottom: 20px;
@@ -319,4 +306,19 @@ input:focus {
 
 .notification.error i {
     color: #dc3545;
+}
+
+/* Add to admin.css */
+.btn-danger {
+    background: rgba(255, 50, 50, 0.2) !important;
+    border: 1px solid rgba(255, 50, 50, 0.3) !important;
+    color: #ff4d4d !important;
+    transition: var(--transition);
+}
+
+.btn-danger:hover {
+    background: rgba(255, 50, 50, 0.3) !important;
+    border: 1px solid rgba(255, 50, 50, 0.4) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 0 10px rgba(255, 50, 50, 0.2);
 }

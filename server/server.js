@@ -387,6 +387,31 @@ app.get('/api/admin/orders', authenticateToken, (req, res) => {
   });
 });
 
+// Add this after the other route handlers
+// DELETE order endpoint
+app.delete('/api/admin/orders/:shippingId', authenticateToken, (req, res) => {
+    const shippingId = req.params.shippingId;
+    
+    // Find index of order
+    const orderIndex = orders.findIndex(o => o.shippingId === shippingId);
+    
+    if (orderIndex === -1) {
+        return res.status(404).json({
+            success: false,
+            message: `Order ${shippingId} not found`
+        });
+    }
+    
+    // Remove the order
+    orders.splice(orderIndex, 1);
+    saveOrders();
+    
+    res.json({
+        success: true,
+        message: `Order ${shippingId} deleted successfully`
+    });
+});
+
 // Start server
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
