@@ -20,7 +20,7 @@ async function loadProducts() {
         container.innerHTML = '<div class="spinner"></div>';
         
         // Fetch products from server
-        const response = await fetch('http://localhost:3000/api/products');
+        const response = await fetch('https://testshop-ltuc.onrender.com/api/products');
         const products = await response.json();
         
         // Render products
@@ -117,27 +117,6 @@ function showNotification(message) {
         }, 300);
     }, 3000);
 }
-
-document.addEventListener('DOMContentLoaded', () => {
-    const themeToggle = document.getElementById('themeToggle');
-    const currentTheme = localStorage.getItem('theme') || 'light';
-    
-    // Apply saved theme
-    document.documentElement.setAttribute('data-theme', currentTheme);
-    updateThemeIcon(currentTheme);
-    
-    // Toggle theme
-    themeToggle.addEventListener('click', () => {
-        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-        document.documentElement.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
-        updateThemeIcon(newTheme);
-    });
-    
-    function updateThemeIcon(theme) {
-        themeToggle.innerHTML = theme === 'light' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
-    }
-});
 
 /*
 I have an existing website with a two-part structure: a **store front** and an **admin side**. I want you to *revolutionize the UI and UX design* of both sides to create a **modern, futuristic experience** that deeply satisfies the user through **immersive dark design**, **smooth animations**, and **subtle 3D effects**.
