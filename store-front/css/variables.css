@@ -1,25 +1,24 @@
 :root {
-    /* Colors */
-    --primary: #0071e3;
-    --primary-dark: #0062c4;
-    --accent: #ff2d55;
-    --dark: #1d1d1f;
-    --light: #f5f5f7;
-    --gray: #86868b;
-    --white: #ffffff;
+    /* Futuristic Color Scheme */
+    --primary: #00f3ff;
+    --primary-dark: #00c4cc;
+    --accent: #ff0a78;
+    --dark: #0a0a15;
+    --darker: #070710;
+    --light: #1a1a2e;
+    --lighter: #2d2d4a;
+    --text: #e0e0ff;
+    --text-secondary: #a0a0c0;
     
-    /* Light mode specific */
-    --bg-color: #ffffff;
-    --text-color: #1d1d1f;
-    --card-bg: #ffffff;
-    --border-color: rgba(0, 0, 0, 0.1);
-    --header-bg: #ffffff;
-    --footer-bg: #1d1d1f;
-    --footer-text: #f5f5f7;
+    /* Glassmorphism */
+    --glass-bg: rgba(30, 30, 50, 0.5);
+    --glass-border: 1px solid rgba(255, 255, 255, 0.1);
+    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    --glass-blur: blur(10px);
     
     /* Typography */
-    --font-main: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    --font-heading: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-main: 'Exo 2', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-heading: 'Orbitron', 'Arial Narrow', sans-serif;
     
     /* Spacing */
     --space-xs: 0.25rem;
@@ -30,16 +29,46 @@
     --space-xxl: 3rem;
     
     /* Borders */
-    --border-radius: 12px;
-    --border: 1px solid var(--border-color);
+    --border-radius: 16px;
+    --border-radius-sm: 8px;
     
     /* Shadows */
-    --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.05);
-    --shadow-md: 0 6px 16px rgba(0, 0, 0, 0.08);
-    --shadow-lg: 0 12px 24px rgba(0, 0, 0, 0.1);
+    --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 12px 36px rgba(0, 0, 0, 0.5);
+    --neon-shadow: 0 0 15px var(--primary);
     
     /* Transitions */
-    --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    --transition-slow: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    
+}
+
+/* Glassmorphism Utility */
+.glass {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: var(--glass-border);
+    box-shadow: var(--glass-shadow);
+}
+
+/* Futuristic Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--darker);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--lighter);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary);
 }
 
 /* Dark mode variables */   

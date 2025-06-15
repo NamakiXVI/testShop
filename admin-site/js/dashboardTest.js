@@ -93,6 +93,7 @@ function renderOrders(orders, statusOptions) {
     container.innerHTML = '';
 
     orders.forEach(order => {
+        const orderTotal = order.total || 0;
         const statusClass = getStatusClass(order.status);
         
         const orderEl = document.createElement('div');
@@ -112,12 +113,12 @@ function renderOrders(orders, statusOptions) {
                 <h4>Items</h4>
                 <ul>
                     ${order.items.map(item => `
-                        <li>${item.name} - ${item.quantity} x $${item.price.toFixed(2)}</li>
+                        <li>${item.name} - ${item.quantity} x $${(item.price || 0).toFixed(2)}</li>
                     `).join('')}
                 </ul>
             </div>
             <div class="order-footer">
-                <div class="order-total">Total: $${order.total.toFixed(2)}</div>
+                <div class="order-total">Total: $${orderTotal.toFixed(2)}</div>
                 
                 <div class="tracking-info">
                     <div class="form-group">
@@ -143,6 +144,10 @@ function renderOrders(orders, statusOptions) {
                     <button class="btn btn-primary update-order" data-id="${order.shippingId}">
                         Update Order
                     </button>
+                    <!-- DELETE BUTTON ADDED HERE -->
+                    <button class="btn btn-danger delete-order" data-id="${order.shippingId}">
+                        <i class="fas fa-trash"></i> Delete
+                    </button>
                 </div>
             </div>
         `;
@@ -153,7 +158,13 @@ function renderOrders(orders, statusOptions) {
     document.querySelectorAll('.update-order').forEach(button => {
         button.addEventListener('click', updateOrder);
     });
+    
+    // Add event listeners to delete buttons
+    document.querySelectorAll('.delete-order').forEach(button => {
+        button.addEventListener('click', deleteOrder);
+    });
 }
+
 
 function getStatusClass(status) {
     if (!status) return '';
@@ -355,3 +366,82 @@ document.getElementById('response-form').addEventListener('submit', async functi
         alert('Failed to send response: ' + error.message);
     }
 });
+
+function showNotification(message, isError = false) {
+    const notification = document.createElement('div');
+    notification.className = `notification ${isError ? 'error' : 'success'}`;
+    notification.innerHTML = `
+        <i class="fas ${isError ? 'fa-exclamation-circle' : 'fa-check-circle'}"></i>
+        <span>${message}</span>
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // Show notification
+    setTimeout(() => {
+        notification.classList.add('show');
+    }, 10);
+    
+    // Remove notification after delay
+    setTimeout(() => {
+        notification.classList.remove('show');
+        setTimeout(() => {
+            notification.remove();
+        }, 300);
+    }, 3000);
+}
+
+async function deleteOrder(event) {
+    const shippingId = event.target.closest('.delete-order').dataset.id;
+    const orderCard = event.target.closest('.order-card');
+    
+    if (!confirm(`Are you sure you want to permanently delete order ${shippingId}? This action cannot be undone.`)) {
+        return;
+    }
+    
+    // Show deleting state
+    const originalText = event.target.innerHTML;
+    event.target.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Deleting...';
+    event.target.disabled = true;
+    
+    try {
+        const response = await fetch(`http://localhost:3000/api/admin/orders/${shippingId}`, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('adminToken')}`
+            }
+        });
+        
+        if (response.ok) {
+            // Add animation for deletion
+            orderCard.style.opacity = '1';
+            
+            // Animate removal
+            let opacity = 1;
+            const fadeOut = setInterval(() => {
+                opacity -= 0.05;
+                orderCard.style.opacity = opacity;
+                
+                if (opacity <= 0) {
+                    clearInterval(fadeOut);
+                    orderCard.remove();
+                    
+                    // Show success notification
+                    showNotification(`Order ${shippingId} deleted successfully`);
+                }
+            }, 30);
+        } else {
+            const errorData = await response.json();
+            throw new Error(errorData.message || 'Failed to delete order');
+        }
+    } catch (error) {
+        console.error('Delete error:', error);
+        
+        // Reset button state
+        event.target.innerHTML = originalText;
+        event.target.disabled = false;
+        
+        // Show error notification
+        showNotification(`Delete failed: ${error.message}`, true);
+    }
+}

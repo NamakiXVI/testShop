@@ -264,3 +264,59 @@ input:focus {
     font-size: 0.9rem;
     text-align: center;
 }
+
+/* Add to admin.css */
+.btn-danger {
+    background: rgba(255, 0, 0, 0.2) !important;
+    border: 1px solid rgba(255, 0, 0, 0.3) !important;
+    color: #ff4d4d !important;
+}
+
+.btn-danger:hover {
+    background: rgba(255, 0, 0, 0.3) !important;
+    border: 1px solid rgba(255, 0, 0, 0.4) !important;
+    transform: translateY(-2px);
+}
+
+.notification {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 24px;
+    border-radius: 8px;
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    border: var(--glass-border);
+    box-shadow: var(--shadow-lg);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 10000;
+}
+
+.notification.show {
+    opacity: 1;
+}
+
+.notification.success {
+    border-left: 3px solid #28a745;
+}
+
+.notification.error {
+    border-left: 3px solid #dc3545;
+}
+
+.notification i {
+    font-size: 1.2rem;
+}
+
+.notification.success i {
+    color: #28a745;
+}
+
+.notification.error i {
+    color: #dc3545;
+}
